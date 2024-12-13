@@ -4,8 +4,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main', 
-                    credentialsId: 'your-credentials-id', 
-                    url: 'https://github.com/your-username/your-repository.git'
+                    credentialsId: '50d22cdd-36e1-4e5d-821e-c44674b31128', 
+                    url: 'https://github.com/michaelokeagu/Web-Dev.git'
             }
         }
         stage('Build') {
