@@ -10,6 +10,8 @@ pipeline {
         stage('Build') {      // Step 3: Build the project
             steps {
                 echo 'Building the project...'
+                sh 'ls -al' // Check files
+                sh 'chmod +x gradlew'
                 sh './gradlew build'
             }
         }
