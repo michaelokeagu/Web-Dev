@@ -1,5 +1,6 @@
 pipeline {
-    agent any                 // Step 1: Use any available Jenkins agent
+    agent {docker { image 'gradle:latest' } // Step 1: Use any available Jenkins agent
+          }
     stages {
         stage('Checkout') {   // Step 2: Clone the repository
             steps {
@@ -10,8 +11,6 @@ pipeline {
         stage('Build') {      // Step 3: Build the project
             steps {
                 echo 'Building the project...'
-                sh 'ls -al' // Check files
-                sh 'chmod +x gradlew'
                 sh './gradlew build'
             }
         }
