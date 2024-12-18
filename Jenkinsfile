@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        docker { image 'gradle:latest' }
-    }
+    agent any
     stages {
         stage('Checkout') {   // Step 2: Clone the repository
             steps {
