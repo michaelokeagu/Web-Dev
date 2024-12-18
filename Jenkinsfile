@@ -1,6 +1,7 @@
 pipeline {
-    agent any {docker { image 'gradle:latest' } // Step 1: Use any available Jenkins agent
-          }
+    agent {
+        docker { image 'gradle:latest' }
+    }
     stages {
         stage('Checkout') {   // Step 2: Clone the repository
             steps {
