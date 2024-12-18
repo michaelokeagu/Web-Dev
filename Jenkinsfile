@@ -1,27 +1,37 @@
 pipeline {
-    agent any
+    agent any                 // Step 1: Use any available Jenkins agent
     stages {
-        stage('Checkout') {
+        stage('Checkout') {   // Step 2: Clone the repository
             steps {
-                git branch: 'main', 
-                    credentialsId: '50d22cdd-36e1-4e5d-821e-c44674b31128', 
-                    url: 'https://github.com/michaelokeagu/Web-Dev.git'
+                echo 'Cloning the repository...'
+                checkout scm
             }
         }
-        stage('Build') {
+        stage('Build') {      // Step 3: Build the project
             steps {
                 echo 'Building the project...'
+                sh './gradlew build'
             }
         }
-        stage('Test') {
+        stage('Test') {       // Step 4: Run tests
             steps {
                 echo 'Running tests...'
+                sh './gradlew test'
             }
         }
-        stage('Deploy') {
+        stage('Deploy') {     // Step 5: Deploy the application
             steps {
-                echo 'Deploying the application... Please wait'
+                echo 'Deploying the application...'
+                sh './deploy.sh'
             }
+        }
+    }
+    post {                   // Step 6: Handle the pipeline result
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
